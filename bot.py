@@ -75,6 +75,8 @@ def createMenu(menuItems):
             if menuItems[i+1][-1]=="*":
                 string = string + "\n"
     string = string.replace("&amp;","and")
+    if string == "":
+    	return "No menus available"
     return string
 
 
@@ -85,21 +87,13 @@ def moulton():
     x = {'menu': None}
     currenttime= int(time.ctime()[11:19][0:2]) -3
     if currenttime>= 5 and currenttime < 10:
-        if createMenu(menuItems("48","Breakfast")) == '':
-            x['menu'] == 'No menus available'
-            return json.dumps(x)
-        x['menu'] == createMenu(menuItems("48","Breakfast"))
-        return json.dumps(x)
-    elif currenttime>= 10 and currenttime < 14:
-        if createMenu(menuItems("48","Lunch")) == '':
-            x['menu'] == 'No menus available'
-            return json.dumps(x)
-        x['menu'] == createMenu(menuItems("48","Lunch"))
-        return json.dumps(x)
-    else:
-        if createMenu(menuItems("48","Dinner")) == '':
-            return'No menus available'
+        return createMenu(menuItems("48","Breakfast")) == '':
 
+    elif currenttime>= 10 and currenttime < 14:
+
+		return createMenu(menuItems("48","Lunch"))
+
+    else:
 		return createMenu(menuItems("48","Dinner"))
 
 
