@@ -82,7 +82,7 @@ def createMenu(menuItems):
 
 
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/moulton',methods=['GET','POST'])
 def moulton():
     x = {'menu': None}
     currenttime= int(time.ctime()[11:19][0:2]) -3
