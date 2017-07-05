@@ -2,6 +2,8 @@ import flask
 import os
 import time
 import urllib2
+from bs4 import BeautifulSoup
+
 
 from flask import Flask, jsonify
 
