@@ -1,12 +1,18 @@
 import flask
 import os
 import time
+import urllib2
 
 from flask import Flask, jsonify
 
 
+
 app = Flask(__name__)
 
+urlBase = "http://www.bowdoin.edu/atreus/views?unit="
+mealMarker="&meal="
+diningHalls = ["48","49"]
+meals =["Breakfast","Lunch","Dinner"]
 
 def menuItems(hall,meal):
     url = urlBase+hall+mealMarker+meal
