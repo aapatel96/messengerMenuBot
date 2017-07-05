@@ -8,6 +8,77 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
+def menuItems(hall,meal):
+    url = urlBase+hall+mealMarker+meal
+    webpage= urllib2.urlopen(url)
+    html = webpage.read()
+    soup = BeautifulSoup(html, 'html.parser')
+    necessaryTags = soup(["h3", "span"])
+    necessaryTagsAsStrings = []
+    for i in necessaryTags:
+        necessaryTagsAsStrings.append(str(i))
+##    necessaryTagsPure = []
+##    for j in necessaryTagsAsStrings:
+##        if j[0:6] =="<span>":
+##            necessaryTagsPure.append(j)
+##        if j[0:4] =="<h3>":
+##            necessaryTagsPure.append(j)
+##    necessaryTagsDoublePure = []
+    necessaryTagsAsStringsPure=[]
+    for j in necessaryTagsAsStrings:
+        if j[0:6] =="<span>":
+
+            try:
+                textToAppend = j[6:-7]
+                necessaryTagsAsStringsPure.append(textToAppend)
+
+            except:
+                pass
+        if j[0:4] =="<h3>":
+
+            try:
+                textToAppend = j[4:-5]+"*"
+                necessaryTagsAsStringsPure.append(textToAppend)
+
+            except:
+                pass            
+
+    necessaryTagsAsStringsPure.append(hall)
+    return necessaryTagsAsStringsPure
+
+def createMenu(menuItems):
+    diningHall = ""
+    if menuItems[-1] == "48":
+        diningHall = "Moulton"
+    if menuItems[-1] == "49":
+        diningHall = "Thorne"
+    del menuItems[-1]
+    string = ""
+    lastWasTitle = False
+    for i in range(len(menuItems)):
+        if menuItems[i][-1]=="*":
+            stringToAppend = menuItems[i][0:-1].upper()+"\n"
+            string = string+stringToAppend
+            
+            continue
+        string = string + menuItems[i]+ "\n"
+        if i != len(menuItems)-1:
+            if menuItems[i+1][-1]=="*":
+                string = string + "\n"
+    string = string.replace("&amp;","and")
+    return string
+
+
+moultonBreakfast =createMenu(menuItems("48","Breakfast"))
+thorneBreakfast =createMenu(menuItems("49","Breakfast"))
+
+moultonLunch =createMenu(menuItems("48","Lunch"))
+thorneLunch =createMenu(menuItems("49","Lunch"))
+
+moultonDinner = createMenu(menuItems("48","Dinner"))
+thorneDinner = createMenu(menuItems("49","Dinner"))
+
+
 @app.route('/',methods=['GET','POST'])
 def moulton():
     x = {'menu': None}
@@ -16,20 +87,20 @@ def moulton():
         if moultonBreakfast == '':
             x['menu'] == 'No menus available'
             return jsonify(results=x)
-        x['menu'] == moultonBreakfast
+        x['menu'] == createMenu(menuItems("48","Breakfast"))
         return jsonify(results=x)
     elif currenttime>= 10 and currenttime < 14:
         if moultonLunch == '':
             x['menu'] == 'No menus available'
             return jsonify(results=x)
-        x['menu'] == moultonLunch
+        x['menu'] == createMenu(menuItems("48","Lunch"))
         return jsonify(results=x)
     else:
         if moultonDinner == '':
             x['menu'] == 'No menus available'
             return jsonify(results=x)
 
-        x['menu'] == moultonDinner
+        x['menu'] == createMenu(menuItems("48","Dinner"))
         return jsonify(results=x)
 
 
