@@ -79,7 +79,16 @@ def createMenu(menuItems):
     	return "No menus available"
     return string
 
-
+@app.route('/thorne',methods=['GET','POST'])
+def moulton():
+    x = {'menu': None}
+    currenttime= int(time.ctime()[11:19][0:2]) -3
+    if currenttime>= 5 and currenttime < 10:
+        return createMenu(menuItems("49","Breakfast"))
+    elif currenttime>= 10 and currenttime < 14:
+		return createMenu(menuItems("49","Lunch"))
+    else:
+		return createMenu(menuItems("49","Dinner"))
 
 
 @app.route('/moulton',methods=['GET','POST'])
