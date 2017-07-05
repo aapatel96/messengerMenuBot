@@ -77,14 +77,6 @@ def createMenu(menuItems):
     return string
 
 
-moultonBreakfast =createMenu(menuItems("48","Breakfast"))
-thorneBreakfast =createMenu(menuItems("49","Breakfast"))
-
-moultonLunch =createMenu(menuItems("48","Lunch"))
-thorneLunch =createMenu(menuItems("49","Lunch"))
-
-moultonDinner = createMenu(menuItems("48","Dinner"))
-thorneDinner = createMenu(menuItems("49","Dinner"))
 
 
 @app.route('/',methods=['GET','POST'])
@@ -94,22 +86,22 @@ def moulton():
     if currenttime>= 5 and currenttime < 10:
         if moultonBreakfast == '':
             x['menu'] == 'No menus available'
-            return jsonify(results=x)
+            return x
         x['menu'] == createMenu(menuItems("48","Breakfast"))
-        return jsonify(results=x)
+        return x
     elif currenttime>= 10 and currenttime < 14:
         if moultonLunch == '':
             x['menu'] == 'No menus available'
-            return jsonify(results=x)
+            return x
         x['menu'] == createMenu(menuItems("48","Lunch"))
-        return jsonify(results=x)
+        return x
     else:
         if moultonDinner == '':
             x['menu'] == 'No menus available'
-            return jsonify(results=x)
+            return x
 
         x['menu'] == createMenu(menuItems("48","Dinner"))
-        return jsonify(results=x)
+        return x
 
 
 
