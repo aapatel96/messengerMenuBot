@@ -1,5 +1,6 @@
 import flask
 import os
+import time
 
 from flask import Flask, jsonify
 
@@ -25,7 +26,7 @@ def moulton():
         return jsonify(results=x)
     else:
         if moultonDinner == '':
-            x['menu'] == 'No menus available'
+            x['menu'] == 'No menus available'x`
             return jsonify(results=x)
 
         x['menu'] == moultonDinner
