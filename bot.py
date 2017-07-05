@@ -3,6 +3,7 @@ import os
 import time
 import urllib2
 from bs4 import BeautifulSoup
+import json
 
 
 from flask import Flask, jsonify
@@ -86,22 +87,22 @@ def moulton():
     if currenttime>= 5 and currenttime < 10:
         if createMenu(menuItems("48","Breakfast")) == '':
             x['menu'] == 'No menus available'
-            return x
+            return json.dumps(x)
         x['menu'] == createMenu(menuItems("48","Breakfast"))
-        return x
+        return json.dumps(x)
     elif currenttime>= 10 and currenttime < 14:
         if createMenu(menuItems("48","Lunch")) == '':
             x['menu'] == 'No menus available'
-            return x
+            return json.dumps(x)
         x['menu'] == createMenu(menuItems("48","Lunch"))
-        return x
+        return json.dumps(x)
     else:
         if createMenu(menuItems("48","Dinner")) == '':
             x['menu'] == 'No menus available'
-            return x
+            return json.dumps(x)
 
         x['menu'] == createMenu(menuItems("48","Dinner"))
-        return x
+        return json.dumps(x)
 
 
 
