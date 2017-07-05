@@ -87,12 +87,9 @@ def moulton():
     x = {'menu': None}
     currenttime= int(time.ctime()[11:19][0:2]) -3
     if currenttime>= 5 and currenttime < 10:
-        return createMenu(menuItems("48","Breakfast")) == '':
-
+        return createMenu(menuItems("48","Breakfast"))
     elif currenttime>= 10 and currenttime < 14:
-
 		return createMenu(menuItems("48","Lunch"))
-
     else:
 		return createMenu(menuItems("48","Dinner"))
 
