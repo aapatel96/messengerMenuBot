@@ -97,14 +97,10 @@ def moulton():
         x['menu'] == createMenu(menuItems("48","Lunch"))
         return json.dumps(x)
     else:
-##        if createMenu(menuItems("48","Dinner")) == '':
-##            x['menu'] == 'No menus available'
-##            return json.dumps(x)
+        if createMenu(menuItems("48","Dinner")) == '':
+            return'No menus available'
 
-##        x['menu'] == createMenu(menuItems("48","Dinner"))
-##        return json.dumps(x)
-
-		return jsonify("{hello:world}")
+		return createMenu(menuItems("48","Dinner"))
 
 
 if __name__ == '__main__':
