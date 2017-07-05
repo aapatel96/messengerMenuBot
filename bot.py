@@ -26,7 +26,7 @@ def moulton():
         return jsonify(results=x)
     else:
         if moultonDinner == '':
-            x['menu'] == 'No menus available'x`
+            x['menu'] == 'No menus available'
             return jsonify(results=x)
 
         x['menu'] == moultonDinner
