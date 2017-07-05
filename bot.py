@@ -80,7 +80,7 @@ def createMenu(menuItems):
     return string
 
 @app.route('/thorne',methods=['GET','POST'])
-def moulton():
+def thorne():
     x = {'menu': None}
     currenttime= int(time.ctime()[11:19][0:2]) -3
     if currenttime>= 5 and currenttime < 10:
