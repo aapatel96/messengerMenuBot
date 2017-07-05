@@ -66,14 +66,14 @@ def createMenu(menuItems):
     lastWasTitle = False
     for i in range(len(menuItems)):
         if menuItems[i][-1]=="*":
-            stringToAppend = menuItems[i][0:-1].upper()+"\n"
+            stringToAppend = menuItems[i][0:-1].upper()+"<br>"
             string = string+stringToAppend
             
             continue
-        string = string + menuItems[i]+ "\n"
+        string = string + menuItems[i]+ "<br>"
         if i != len(menuItems)-1:
             if menuItems[i+1][-1]=="*":
-                string = string + "\n"
+                string = string + "<br>"
     string = string.replace("&amp;","and")
     if string == "":
     	return "No menus available"
